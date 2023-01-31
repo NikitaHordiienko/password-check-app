@@ -1,0 +1,43 @@
+.container,
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    width: 300px;
+    margin-top: 10px;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.default,
+.unvalid {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #818182;
+}
+
+.default:not(:last-child) {
+    margin-bottom: 5px;
+}
+
+.unvalid,
+.easy {
+    background-color: #F90000;
+}
+
+.medium {
+    background-color: #D3F900;
+}
+
+.strong {
+    background-color: #039627;
+}

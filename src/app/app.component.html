@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Password strength test</h1>
+    <form class="form-group">
+        <label>Check your password here</label>
+        <input 
+            class="form-control" 
+            name="password" 
+            [(ngModel)]="passwordValue"
+            (ngModelChange)="checkPassword($event)" 
+        />
+    </form>
+    <h2>Result</h2>
+    <ul class="list">
+        <li 
+            class='default' 
+            [class.unvalid]="passwordStrength === 'unvalid'" 
+            [class.easy]="passwordStrength === 'easy'"
+            [class.medium]="passwordStrength === 'medium'" 
+            [class.strong]="passwordStrength === 'strong'"
+        ></li>
+        <li 
+            class='default' 
+            [class.unvalid]="passwordStrength === 'unvalid'" 
+            [class.medium]="passwordStrength === 'medium'"
+            [class.strong]="passwordStrength === 'strong'"
+        ></li>
+        <li 
+            class='default' 
+            [class.unvalid]="passwordStrength === 'unvalid'" 
+            [class.strong]="passwordStrength === 'strong'"
+        ></li>
+    </ul>    
+</div>
