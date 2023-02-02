@@ -1,38 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
+import { InputComponent } from './input-password.component/input-password.component';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <div class="container">
+    <h3>{{passwordType}}</h3>
+      <input-component> </input-component>
+      <password-strength [passwordStrength]="passwordType"> </password-strength>
+    </div>`,
   styleUrls: ['./app.component.css'],
 })
   
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewChecked {
+  passwordType: string = ''
+  
+  @ViewChild(InputComponent) child !: InputComponent;
 
-  passwordValue: string = '';
-  passwordStrength: string = 'default';
+  constructor(private cd: ChangeDetectorRef) { }
+  ngAfterViewChecked(): void {
+    this.passwordType = this.child.passwordStrength
+    this.cd.detectChanges();
+  }
+  
+  ngOnInit(): void {
 
-  checkPassword(value: any) {    
-    this.passwordValue = value;
-
-    if (this.passwordValue.length === 0) {
-
-      this.passwordStrength = 'default';
-
-    } else if (this.passwordValue.length < 8) {
-
-      this.passwordStrength = 'unvalid';
-
-    } else if (this.passwordValue.match(/(^[A-Za-z\s]*$)|(^[0-9]+$)|(^[!-\/:-@[-`{-~]+$)/)) {
-
-      this.passwordStrength = 'easy';
-
-    } else if (this.passwordValue.match(/(^[A-Za-z\s!-\/:-@[-`{-~]*$)|(^[A-Za-z\s0-9]+$)|(^[0-9!-\/:-@[-`{-~]+$)/)) {
-
-      this.passwordStrength = 'medium';
-
-    } else if (this.passwordValue.match(/(^[A-Za-z\s0-9!-\/:-@[-`{-~]+$)/)) {
-
-      this.passwordStrength = 'strong';
-    } 
   }
 }
